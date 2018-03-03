@@ -1,2 +1,2 @@
-# Loftschool-Task
-Задачи LoftSchool 
+# JS-Task
+Задачи JavaScript
