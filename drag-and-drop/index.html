@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="position: relative">
+        <div id="i1" style="width: 100px; height: 100px; background-color: cornflowerblue;  position: absolute;"></div>
+    </div>
+
+    <script>
+
+        // Standard CSSOM coordinate systems
+        // https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems
+
+        var osX = 0;
+        var osY = 0;
+        var activeElem;
+
+        var mDown = (e) => {
+            console.log(`Кнопка нажата ${e.target}`);
+            activeElem = e.target;
+            osX = e.offsetX;
+            osY = e.offsetY;
+        };
+
+        var mUp = (e) => {
+            console.log('Кнопка отжата %s', e.target);
+            activeElem = null;
+        };
+
+        var mMove = (e) => {
+            if(activeElem) {
+                console.log('Елемент выбран, мышка двигается', osX, osY, e.offsetY, e.offsetX);
+                elem.style.left = (e.clientX - osX) + 'px';
+                elem.style.top = (e.clientY - osY) + 'px';
+            }
+        };
+
+        var elem = document.querySelector('#i1');
+        elem.addEventListener('mousedown', mDown);
+        elem.addEventListener('mouseup', mUp);
+        document.addEventListener('mousemove', mMove);
+
+    </script>
+
+</body>
+</html>
